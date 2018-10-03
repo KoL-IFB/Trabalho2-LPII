@@ -1,0 +1,84 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package questao4;
+
+import java.util.Random;
+
+/**
+ *
+ * @author KoL
+ */
+public class Questao4 {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        Random r = new Random();
+        Matriz a = new Matriz();
+        Matriz b = new Matriz();
+        Matriz c = new Matriz();
+        
+        //Linhas e Colunas das Matrizes
+        int x;
+        do{
+            x = r.nextInt(10);
+        }while(x==0);
+        int y;
+        do{
+            y = r.nextInt(10);
+        }while(y==0);
+        int z;
+        
+        //Matrizes
+        int[][] matrizA = a.fazMatriz(y,x);
+        int[][] matrizB = b.fazMatriz(x,y);
+        int[][] matrizC = new int[y][y];
+        
+        //Mostra Matrizes
+        System.out.println("Matriz A");
+        a.mostraMatriz(matrizA, y, x);
+        System.out.println("\n");
+        System.out.println("Matriz B");
+        b.mostraMatriz(matrizB, x, y);
+                        
+        for(int i = 0; i<y;i++){
+            for(int j = 0; j<y;j++){
+                for(int k = 0; k<x;k++){
+                    matrizC[i][j]+= matrizA[i][k]*matrizB[k][j];
+                }
+            }
+        }
+        System.out.println("Matriz C");
+        c.mostraMatriz(matrizC, y, y);
+    }
+    
+}
+class Matriz{
+    
+    Random r = new Random();
+    
+    int[][] fazMatriz(int a, int b){
+        int[][] matriz = new int[a][b];
+        for(int i = 0; i<a;i++){
+            for(int j = 0;j<b;j++){
+                matriz[i][j]=r.nextInt(10);
+            }
+        }
+        return matriz;
+    }
+    
+    void mostraMatriz(int[][] matriz, int a, int b){
+        String s = new String();
+        for(int i=0; i<a; i++){
+            for(int j=0; j<b; j++){
+                s+=matriz[i][j]+"    ";
+            }
+            s+="\n";
+        }
+        System.out.print(s);
+    }
+}
